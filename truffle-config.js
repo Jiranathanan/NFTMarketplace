@@ -7,7 +7,7 @@ module.exports = {
       // gas: 5000000
     },
   },
-  contracts_directory: './src/contracts',
+  contracts_directory: './src/contracts/',
   contracts_build_directory: './src/abis',
   compilers: {
     solc: {
