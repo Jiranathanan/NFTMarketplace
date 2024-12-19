@@ -46,7 +46,7 @@ contract ERC721 {
         // If the owner IS the zero address, it means the token has not been minted or has been burned
     }
 
-    function _mint(address to, uint256 tokenId) internal {
+    function _mint(address to, uint256 tokenId) internal virtual {
         // require that the mint address isn't 0
         require(to != address(0), 'ERC721: minting to the zero address');
         // In Solidity, address(0) represents an unassigned or empty address
