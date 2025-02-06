@@ -21,6 +21,7 @@ contract ERC721Enumerable is ERC721 {
         super._mint(to, tokenId);
         // add tokens to the owner & add to tokens to our totalsupply - to allTokens
         _addTokensToAllTokenEnumeration(tokenId);
+        _addTokensToOwnerEnumeration(to, tokenId);
     }
 
     // add tokens to the _allTokens array and set the position of the tokens index
@@ -29,7 +30,14 @@ contract ERC721Enumerable is ERC721 {
         _allTokens.push(tokenId);
     }
 
-    function _addTokensToOwnerEnumeration(address to, uint256 tokenId)
+    function _addTokensToOwnerEnumeration(address to, uint256 tokenId) private {
+        // 1. add address and token id to the _ownedTokens
+        // 2. ownedTokensIndex tokenId set to address of ownedTokens position
+        // 3. we want to execute the function with minting
+        _ownedTokensIndex[tokenId] = _ownedTokens[to].length;
+        _ownedTokens[to].push(tokenId);
+
+    }
 
     // return the total supply of the _allTokens array
     function totalSupply() public view returns(uint256) {
