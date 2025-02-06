@@ -20,13 +20,18 @@ contract ERC721Enumerable is ERC721 {
     function _mint(address to, uint256 tokenId) internal override(ERC721) {
         super._mint(to, tokenId);
         // add tokens to the owner & add to tokens to our totalsupply - to allTokens
-        _addTokensToTotalSupply(tokenId);
+        _addTokensToAllTokenEnumeration(tokenId);
     }
 
-    function _addTokensToTotalSupply(uint256 tokenId) private {
+    // add tokens to the _allTokens array and set the position of the tokens index
+    function _addTokensToAllTokenEnumeration(uint256 tokenId) private {
+        _allTokensIndex[tokenId] = _allTokens.length;
         _allTokens.push(tokenId);
     }
 
+    function _addTokensToOwnerEnumeration(address to, uint256 tokenId)
+
+    // return the total supply of the _allTokens array
     function totalSupply() public view returns(uint256) {
         return _allTokens.length;
     }
