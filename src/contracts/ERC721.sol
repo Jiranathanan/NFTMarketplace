@@ -64,7 +64,7 @@ contract ERC721 {
         emit Transfer(address(0), to, tokenId);
     }
 
-    function transferFrom(address _from, address _to, uint256 _tokenId) external payable {
+    function _transferFrom(address _from, address _to, uint256 _tokenId) internal {
 
         require(_to != address(0), 'Error - ERC721 Transfer to the zero address');
         require(ownerOf(_tokenId) == _from, 'Trying to transfer a token the address does not own!');
@@ -73,6 +73,12 @@ contract ERC721 {
         _OwnedTokensCount[_to] += 1;
         _tokenOwner[_tokenId] = _to;
 
+        emit Transfer(_from, _to, _tokenId);
+    }
+
+
+    function transferFrom(address _from, address _to, uint256 _tokenId) public {
+        _transferFrom(_from, _to, _tokenId);
     }
 
 }
