@@ -49,6 +49,7 @@ contract ERC721Enumerable is ERC721 {
     }
 
     function tokenOfOwnerByIndex(address owner, uint index) public view returns(uint256) {
+        require(index < balanceOf(owner), 'owner index is out of bounds!');
         return _ownedTokens[owner][index];
     }
 
