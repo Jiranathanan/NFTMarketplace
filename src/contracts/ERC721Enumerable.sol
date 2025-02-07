@@ -39,6 +39,19 @@ contract ERC721Enumerable is ERC721 {
 
     }
 
+    // two functions - one that returns tokenByIndex and
+    // another one that returns tokenOfOwnerByIndex
+
+    function tokenByIndex(uint256 index) public view returns(uint256) {
+        // make sure that the index is not out of bounds of the total supply
+        require(index < totalSupply(), 'global index is out of bounds!');
+        return _allTokens[index];
+    }
+
+    function tokenOfOwnerByIndex(address owner, uint index) public view returns(uint256) {
+        return _ownedTokens[owner][index];
+    }
+
     // return the total supply of the _allTokens array
     function totalSupply() public view returns(uint256) {
         return _allTokens.length;
