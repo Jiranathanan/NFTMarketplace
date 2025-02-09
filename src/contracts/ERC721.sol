@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import './ERC165.sol';
+
     /*
         building out the minting function
         a. nft point to an address
@@ -10,7 +12,7 @@ pragma solidity ^0.8.0;
         e. create an event that emits a transfer log - contract address. where it being minted to, the id 
     */
 
-contract ERC721 {
+contract ERC721 is ERC165 {
 
     event Transfer(
         address indexed from, 
