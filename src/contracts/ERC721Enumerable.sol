@@ -14,6 +14,11 @@ contract ERC721Enumerable is IERC721Enumerable, ERC721 {
     mapping(address => uint256[]) private _ownedTokens; 
     // mapping from token ID index of the owner tokens list
     mapping(uint256 => uint256) private _ownedTokensIndex;
+    
+    constructor() {
+        _registerInterface(bytes4(keccak256('totalSupply(bytes4)')^
+        keccak256('tokenByIndex(bytes4)')^keccak256('tokenOfOwnerByIndex(bytes4)')));
+    } 
 
     
     // function tokenOfOwnerByIndex(address _owner, uint256 _index) external view returns (uint256);
