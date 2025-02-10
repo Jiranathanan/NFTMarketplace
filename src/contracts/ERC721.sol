@@ -2,6 +2,7 @@
 pragma solidity ^0.8.0;
 
 import './ERC165.sol';
+import './interfaces/IERC721.sol';
 
     /*
         building out the minting function
@@ -12,17 +13,7 @@ import './ERC165.sol';
         e. create an event that emits a transfer log - contract address. where it being minted to, the id 
     */
 
-contract ERC721 is ERC165 {
-
-    event Transfer(
-        address indexed from, 
-        address indexed to, 
-        uint256 indexed tokenId);
-
-    event Approval(
-        address indexed owner,
-        address indexed approved,
-        uint256 indexed tokenId);
+contract ERC721 is ERC165, IERC721 {
 
     // mapping in solidity creates a hash table of key pair values
 
@@ -35,12 +26,12 @@ contract ERC721 is ERC165 {
     // Mapping from token id to approved addresses
     mapping(uint256 => address) private _tokenApprovals;
 
-    function balanceOf(address _owner) public view returns(uint256) {
+    function balanceOf(address _owner) public override view returns(uint256) {
         require(_owner != address(0), 'Unable to find a balance of zero address');
         return _OwnedTokensCount[_owner];
     } 
 
-    function ownerOf(uint256 _tokenId) public view returns(address) {
+    function ownerOf(uint256 _tokenId) public override view returns(address) {
         address owner = _tokenOwner[_tokenId];
         require(owner != address(0), "Token Id doesn't exists");
         return owner;
@@ -84,7 +75,7 @@ contract ERC721 is ERC165 {
     }
 
 
-    function transferFrom(address _from, address _to, uint256 _tokenId) public {
+    function transferFrom(address _from, address _to, uint256 _tokenId) override public {
         require(isApprovedOrOwner(msg.sender, _tokenId));
         _transferFrom(_from, _to, _tokenId);
     }
