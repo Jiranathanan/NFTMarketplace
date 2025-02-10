@@ -1,4 +1,4 @@
-const assert = require('chai');
+const { assert } = require('chai');
 
 const KryptoBird = artifacts.require('./KryptoBird'); /* './Kryptobird' as in abis folder is Kryptobird.json     */
 
