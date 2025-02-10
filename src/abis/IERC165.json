@@ -35,15 +35,15 @@
     "absolutePath": "project:/src/contracts/interfaces/IERC165.sol",
     "exportedSymbols": {
       "IERC165": [
-        670
+        739
       ]
     },
-    "id": 671,
+    "id": 740,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 661,
+        "id": 730,
         "literals": [
           "solidity",
           "^",
@@ -59,38 +59,38 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 670,
+        "id": 739,
         "linearizedBaseContracts": [
-          670
+          739
         ],
         "name": "IERC165",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "documentation": {
-              "id": 662,
+              "id": 731,
               "nodeType": "StructuredDocumentation",
               "src": "85:378:7",
               "text": "@notice Query if a contract implements an interface\n @param interfaceID The interface identifier, as specified in ERC-165\n @dev Interface identification is specified in ERC-165. This function\n  uses less than 30,000 gas.\n @return `true` if the contract implements `interfaceID` and\n  `interfaceID` is not 0xffffffff, `false` otherwise"
             },
             "functionSelector": "01ffc9a7",
-            "id": 669,
+            "id": 738,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "supportsInterface",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 665,
+              "id": 734,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 664,
+                  "id": 733,
                   "mutability": "mutable",
                   "name": "interfaceID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 669,
+                  "scope": 738,
                   "src": "496:18:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -99,7 +99,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 663,
+                    "id": 732,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "496:6:7",
@@ -114,16 +114,16 @@
               "src": "495:20:7"
             },
             "returnParameters": {
-              "id": 668,
+              "id": 737,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 667,
+                  "id": 736,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 669,
+                  "scope": 738,
                   "src": "539:4:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -132,7 +132,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 666,
+                    "id": 735,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "539:4:7",
@@ -146,14 +146,14 @@
               ],
               "src": "538:6:7"
             },
-            "scope": 670,
+            "scope": 739,
             "src": "469:76:7",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 671,
+        "scope": 740,
         "src": "60:488:7"
       }
     ],
@@ -165,7 +165,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-02-10T03:25:40.039Z",
+  "updatedAt": "2025-02-10T13:32:43.459Z",
   "devdoc": {
     "kind": "dev",
     "methods": {
