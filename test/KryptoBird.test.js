@@ -24,11 +24,11 @@ contract('KryptoBird', (accounts) => {
         // 1. Test that the name matches on our contract using the assert.equal function
         // 2. Test that the symbol matches with the assert.equal
         it('has a name', async() => {
-            const name = contract.name();
+            const name = await contract.name();
             assert.equal(name, 'KryptoBird');
         })
         it('has a symbol', async() => {
-            const symbol = contract.symbol();
+            const symbol = await contract.symbol();
             assert.equal(symbol, 'KBIRDZ');
         })
         
