@@ -1,3 +1,4 @@
+# For some reason when working on Frontend, it got issues with node v.18 so I decide to back to 14.15.0
 # nft-marketplace
 ## By Clarian North
 ### Udemy Course
