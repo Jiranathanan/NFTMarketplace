@@ -24,15 +24,39 @@ class App extends Component{
     }
 
     async loadBlockChainData() {
+        const web3 = window.web3;
         // const accounts = await window.web3.eth.getAccounts(); // deprecated
         const accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
-        console.log(accounts);
+        this.setState({account: accounts});
+        // network id
+        const networkId = web3.eth.net.getId();
+        const networkData = KryptoBird.networks[networkId];
+
+        if(networkData) {
+            // test
+        }
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            account: ''
+        }
     }
 
     render() {
         return (
             <div>
-                <h1>NFT Marketplace App</h1>
+                <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+                    <div className="navbar-brand col-sm-3 col-md-3 mr-0" style={{color:'white'}}>
+                        Krypto Birdz NFTs 
+                    </div>
+                    <ul className="navbar-nav px-3">
+                        <l className="nav-item text-nowrap d-none d-sm-none d-sm-block">
+                            <small className="text-white">{this.state.account}</small>
+                        </l>
+                    </ul>
+                </nav>
             </div>
         )
     }
