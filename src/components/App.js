@@ -29,11 +29,18 @@ class App extends Component{
         const accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
         this.setState({account: accounts});
         // network id
-        const networkId = web3.eth.net.getId();
+        const networkId = await web3.eth.net.getId();
         const networkData = KryptoBird.networks[networkId];
 
         if(networkData) {
-            // test
+            // create a var abi set to the Kryptobird abi
+            const abi = KryptoBird.abi;
+            // create a var address set to networkData address
+            const address = networkData.address;
+            // create a var contract which grabs a new instance of web3 eth contract
+            const contract = new web3.eth.Contract(abi, address);
+            // login the console the var contract successfully
+            console.log(contract);
         }
     }
 
@@ -52,9 +59,9 @@ class App extends Component{
                         Krypto Birdz NFTs 
                     </div>
                     <ul className="navbar-nav px-3">
-                        <l className="nav-item text-nowrap d-none d-sm-none d-sm-block">
+                        <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
                             <small className="text-white">{this.state.account}</small>
-                        </l>
+                        </li>
                     </ul>
                 </nav>
             </div>
