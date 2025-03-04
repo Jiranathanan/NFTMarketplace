@@ -40,14 +40,19 @@ class App extends Component{
             // create a var contract which grabs a new instance of web3 eth contract
             const contract = new web3.eth.Contract(abi, address);
             // login the console the var contract successfully
-            console.log(contract);
+            // console.log(contract);
+
+            this.setState({contract}); // this.setState({contract: contract})
+            console.log(this.state);
+            console.log(this.state.contract);
         }
     }
 
     constructor(props) {
         super(props);
         this.state = {
-            account: ''
+            account: '',
+            contract: null
         }
     }
 
