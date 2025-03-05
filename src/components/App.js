@@ -99,6 +99,38 @@ class App extends Component{
                         </li>
                     </ul>
                 </nav>
+
+                <div className="container-fluid mt-1">
+                    <div className="row">
+                        <main role="main" className="col-lg-12 d-flex text-center">
+                            <div className="content mr-auto ml-auto" 
+                                style={{opacity: '0.8', marginTop:'50px'}}>
+                                <h1>KryptoBirdz - NFTs Marketplace</h1>
+                                <form onSubmit={(event) => {
+                                    event.preventDefault()
+                                    const kryptoBird = this.kryptoBird.value 
+                                    this.mint(kryptoBird)
+                                }}>
+                                    <input 
+                                        type="text"
+                                        placeholder="Add a file location"
+                                        className="mb-1 mt-4"
+                                        ref={(input) => this.kryptoBird = input}
+                                    />
+                                    <input
+                                        type="submit"
+                                        className="btn btn-primary btn-black mt-1"
+                                        value='MINT'
+                                        style={{margin:'6px'}}
+                                    />
+                                </form>
+                            </div>
+
+                        </main>
+
+                    </div>
+                </div>
+
             </div>
         )
     }
