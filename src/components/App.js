@@ -43,16 +43,46 @@ class App extends Component{
             // console.log(contract);
 
             this.setState({contract}); // this.setState({contract: contract})
-            console.log(this.state);
-            console.log(this.state.contract);
+            // console.log(this.state);
+            // console.log(this.state.contract);
+            // call total supply of our Krypto Birdz
+            // grab the total supply on the front end and log the results
+            const totalSupply = await contract.methods.totalSupply().call();
+            // set to state
+            this.setState({totalSupply});
+            // console.log(this.state.totalSupply);
+            // set up an array to keep track of tokens
+            // load KryptoBirdz 
+            for (let i = 1; i < totalSupply; i++) {
+                const KryptoBird = await contract.methods.kryptoBirdz(i - 1).call();
+                this.setState({
+                    kryptoBirdz: [...this.state.kryptoBirdz, KryptoBird]
+                })
+            }
+            // console.log(this.state.kryptobirdz);
+
+
+        } else {
+            window.alert('Smart contract not deployed');
         }
+    }
+
+    mint = (kryptoBird) => {
+        this.state.contract.methods.mint(kryptoBird).send({from: this.state.account})
+        .once('receipt', (receipt) => {
+            this.setState({
+                kryptoBirdz: [...this.state.kryptobirdz, KryptoBird]
+            })
+        })
     }
 
     constructor(props) {
         super(props);
         this.state = {
             account: '',
-            contract: null
+            contract: null,
+            totalSupply: 0,
+            kryptobirdz: []
         }
     }
 
