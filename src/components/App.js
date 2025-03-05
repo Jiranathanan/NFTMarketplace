@@ -27,7 +27,7 @@ class App extends Component{
         const web3 = window.web3;
         // const accounts = await window.web3.eth.getAccounts(); // deprecated
         const accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
-        this.setState({account: accounts});
+        this.setState({account: accounts[0]});
         // network id
         const networkId = await web3.eth.net.getId();
         const networkData = KryptoBird.networks[networkId];
@@ -53,10 +53,10 @@ class App extends Component{
             // console.log(this.state.totalSupply);
             // set up an array to keep track of tokens
             // load KryptoBirdz 
-            for (let i = 1; i < totalSupply; i++) {
+            for (let i = 1; i <= totalSupply; i++) {
                 const KryptoBird = await contract.methods.kryptoBirdz(i - 1).call();
                 this.setState({
-                    kryptoBirdz: [...this.state.kryptoBirdz, KryptoBird]
+                    kryptobirdz: [...this.state.kryptobirdz, KryptoBird]
                 })
             }
             // console.log(this.state.kryptobirdz);
@@ -71,7 +71,7 @@ class App extends Component{
         this.state.contract.methods.mint(kryptoBird).send({from: this.state.account})
         .once('receipt', (receipt) => {
             this.setState({
-                kryptoBirdz: [...this.state.kryptobirdz, KryptoBird]
+                kryptobirdz: [...this.state.kryptobirdz, kryptoBird]
             })
         })
     }
@@ -89,6 +89,7 @@ class App extends Component{
     render() {
         return (
             <div>
+                {console.log(this.state.kryptobirdz)}
                 <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
                     <div className="navbar-brand col-sm-3 col-md-3 mr-0" style={{color:'white'}}>
                         Krypto Birdz NFTs 
