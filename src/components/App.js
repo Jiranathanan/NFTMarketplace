@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Web3 from "web3";
 import detectEthereumProvider from "@metamask/detect-provider";
-import KryptoBird from '../abis/KryptoBird.json'; 
+import KryptoBird from '../abis/KryptoBird.json';
+import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBBtn } from "mdb-react-ui-kit";
 
 class App extends Component{
 
@@ -56,10 +57,10 @@ class App extends Component{
             for (let i = 1; i <= totalSupply; i++) {
                 const KryptoBird = await contract.methods.kryptoBirdz(i - 1).call();
                 this.setState({
-                    kryptobirdz: [...this.state.kryptobirdz, KryptoBird]
+                    kryptoBirdz: [...this.state.kryptoBirdz, KryptoBird]
                 })
             }
-            // console.log(this.state.kryptobirdz);
+            // console.log(this.state.kryptoBirdz);
 
 
         } else {
@@ -71,7 +72,7 @@ class App extends Component{
         this.state.contract.methods.mint(kryptoBird).send({from: this.state.account})
         .once('receipt', (receipt) => {
             this.setState({
-                kryptobirdz: [...this.state.kryptobirdz, kryptoBird]
+                kryptoBirdz: [...this.state.kryptoBirdz, kryptoBird]
             })
         })
     }
@@ -82,14 +83,14 @@ class App extends Component{
             account: '',
             contract: null,
             totalSupply: 0,
-            kryptobirdz: []
+            kryptoBirdz: []
         }
     }
 
     render() {
         return (
             <div>
-                {console.log(this.state.kryptobirdz)}
+                {console.log(this.state.kryptoBirdz)}
                 <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
                     <div className="navbar-brand col-sm-3 col-md-3 mr-0" style={{color:'white'}}>
                         Krypto Birdz NFTs 
@@ -126,12 +127,27 @@ class App extends Component{
                                     />
                                 </form>
                             </div>
-
                         </main>
-
+                    </div>
+                    <hr></hr>
+                    <div className="row textCenter">
+                        {this.state.kryptoBirdz.map( (kryptoBird, key) => {
+                            return (
+                                <div>
+                                    <div>
+                                        <MDBCard className="token img" style={{maxWidth:'22rem'}} />
+                                        <MDBCardImage src={kryptoBird} position="top" height='150rem' style={{marginRight: '4px'}} />
+                                        <MDBCardBody>
+                                        <MDBCardTitle> KryptoBirdz </MDBCardTitle>
+                                        <MDBCardText> The KryptoBirdz are 20 uniquely generated KBirdz from the galazy  </MDBCardText>
+                                        <MDBBtn href={kryptoBird}>Download</MDBBtn>
+                                        </MDBCardBody>
+                                    </div>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
-
             </div>
         )
     }
